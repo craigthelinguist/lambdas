@@ -65,14 +65,6 @@ public class Parser {
 	
 	private Term parseTerm() throws ParsingException {
 
-		// Defining a new name.
-		if (tokens.size() > index + 1 && expect(EQUALS, index+1)) {
-			Variable name = parseVariable();
-			gobble(EQUALS);
-			Term defn = parseTerm();
-			return new Defn(name, defn);
-		}
-		
 		// Function literal.
 		if (expect(LAMBDA)) {
 			return parseAbstraction();
